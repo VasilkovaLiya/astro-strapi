@@ -1,0 +1,97 @@
+---
+//import BlogPost from '../../layouts/BlogPost.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BaseHead from '../../components/BaseHead.astro';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkHtml from 'remark-html';
+import BlogPost from '../../components/react/BlogPost';
+
+export async function getStaticPaths() {
+  const API_URL = 'https://correct-cow-1b995af80c.strapiapp.com/api';
+
+  try {
+    const response = await fetch(`${API_URL}/articles`);
+    const { data } = await response.json();
+
+    return data.map((article) => ({
+      params: { slug: article.slug },
+      props: { apiUrl: API_URL },
+    }));
+  } catch (error) {
+    console.error('Error in getStaticPaths:', error);
+    return [];
+  }
+}
+
+const { slug } = Astro.params;
+const { apiUrl } = Astro.props;
+let article = null;
+let richTextContent = null;
+let htmlContent = null;
+
+try {
+  const response = await fetch(`${apiUrl}/articles?filters[slug][$eq]=${slug}&populate=*`);
+  const { data } = await response.json();
+  article = data[0];
+
+  // Извлекаем rich-text контент из blocks
+  const richTextBlock = article?.blocks?.find((block) => block.__component === 'shared.rich-text');
+  richTextContent = richTextBlock?.body || '';
+
+  htmlContent = await unified().use(remarkParse).use(remarkHtml).process(richTextContent);
+} catch (error) {
+  console.error('Error fetching article:', error);
+}
+
+if (!article) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Article Not Found',
+  });
+}
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={article.title} description={article.description} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <BlogPost title={article.title} 
+      description={article.description} 
+      publishedAt={article.publishedAt} 
+      richTextContent={richTextContent} 
+      cover={article.cover}
+      />
+      <!-- <BlogPost
+        title={article.title}
+        date={article.publishedAt}
+        image={article.mainImage?.asset?.url}
+      >
+       
+        {article.body?.map((block) => block.children?.map((child) => <p>{child.text}</p>))}
+      </BlogPost> -->
+      <article>
+        <h1>{article.title}</h1>
+        <p class="description">{article.description}</p>
+        <p class="date">Опубликовано: {new Date(article.publishedAt).toLocaleDateString()}</p>
+      </article>
+      {richTextContent && <article set:html={String(htmlContent)} />}
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .description {
+    color: #666;
+    font-size: 1.1em;
+  }
+  .date {
+    color: #999;
+    font-size: 0.9em;
+  }
+</style>

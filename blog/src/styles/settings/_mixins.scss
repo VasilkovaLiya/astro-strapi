@@ -1,0 +1,172 @@
+/* general mixins and helpers */
+
+@mixin reset-list() {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin reset-button() {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@mixin reset-link() {
+  font-family: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+@mixin hover() {
+  @media (hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin object-fit-image-parent($fit: cover) {
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: $fit;
+
+    @content;
+  }
+}
+
+@mixin fill-parent() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin scrollbar() {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $color-white;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb(0 0 0 / 20%);
+    border-radius: 6px;
+  }
+}
+
+@mixin multiline-elipsis($font-size, $line-height, $lines-to-show) {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  height: $font-size * $line-height * $lines-to-show;
+  /* Fallback for non-webkit */
+  font-size: $font-size;
+  line-height: $line-height;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+}
+
+@mixin one-line-ellipsis() {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin reduce-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin input {
+  @include body-text;
+
+  display: block;
+  width: 100%;
+  height: 56px;
+  padding: 16px;
+  background-color: $color-grey-blue;
+  border: 1px solid $color-grey-blue;
+  border-radius: 2px;
+  line-height: 1;
+  color: $color-grey-text;
+  outline: none;
+  box-shadow: none;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus {
+    box-shadow:
+      inset 0 0 0 1px $color-grey-blue,
+      inset 0 0 0 100px $color-grey-blue;
+  }
+}
+
+@mixin icon-default {
+  width: $icon-default-size;
+  min-width: $icon-default-size;
+  height: $icon-default-size;
+}
+
+@mixin icon-medium {
+  width: $icon-medium-size;
+  min-width: $icon-medium-size;
+  height: $icon-medium-size;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+}
+
+@mixin elem-width() {
+  width: 100%;
+
+  @include mobile-small {
+    width: fit-content;
+    min-width: $elem-min-width;
+  }
+}
+
+
+@mixin word-wrap() {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+@mixin container {
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 var(--g-padding);
+
+  @include desktop-wide {
+    max-width: calc(#{$container-max-width} + 2 * var(--g-padding));
+  }
+}

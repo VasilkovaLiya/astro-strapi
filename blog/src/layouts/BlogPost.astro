@@ -1,0 +1,20 @@
+---
+const { title, date, image } = Astro.props;
+---
+
+<article>
+  {image && <img src={image} alt="" width="100" height="100" />}
+  <h1>{title}</h1>
+  <p>{date}</p>
+  <div class="content">
+    <slot />
+  </div>
+</article>
+
+<style>
+  article {
+    max-width: 720px;
+    margin: auto;
+    padding: 2rem;
+  }
+</style>

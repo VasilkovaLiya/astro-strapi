@@ -1,0 +1,48 @@
+$color-base: #c9a998;
+$color-black: #01010e;
+$color-white: #fff;
+$color-light-grey: #f6f6f6;
+$color-grey-blue: #f0f3f8;
+$color-grey-blue-darker: #e2e9f5;
+$color-grey-blue-dark: #a1cbe9;
+$color-dark-blue: #262647;
+$color-grey-text: #9393a3;
+$color-grey-text-on-dark: #9898b9;
+$color-border: #cddbf7;
+$color-intensive-blue: #30305d;
+$color-middle-blue: #29509f;
+$color-blue: #023e9c;
+$color-red: #c30d26;
+$color-red-light: #f6dbdf;
+$color-red-light-2: #f4d1d6;
+$color-validation: #eed91c;
+$color-highlight: #fdf425;
+$color-success: #1bdb45;
+$color-error: #f22a46;
+$color-error: #f22a46;
+$color-link-default: #1d5cdb;
+$color-btn-hover: #1d5cdb;
+$color-bright-blue: #1d5cdb;
+$color-link-hover: #f22a46;
+//other
+$transition-default: 0.2s linear;
+$transition-slide: 0.48s cubic-bezier(0.31, 0.85, 0.42, 0.98);
+$transition-function: cubic-bezier(0.31, 0.85, 0.42, 0.98);
+$container-max-width: 1320px;
+$elem-height-small: 40px;
+$elem-height-medium: 48px;
+$elem-height-big: 56px;
+$elem-width-mobile: 352px;
+$elem-width-desktop: 392px;
+$elem-min-width: 352px;
+$elem-max-width: 100%;
+$icon-default-size: 24px;
+$icon-medium-size: 16px;
+$header-mobile-height: 64px;
+$header-tablet-height: 64px;
+$header-desktop-height: 64px;
+$header-desktop-middle-height: 72px;
+$footer-mobile-menu: 64px;
+$bg-gradient-layer: linear-gradient(to bottom,
+                rgb(41 80 159 / 0%) 0%,
+                rgb(51 51 67 / 52%) 100%);
