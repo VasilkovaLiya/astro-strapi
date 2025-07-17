@@ -1,0 +1,19 @@
+// Импорт глобальных переменных и миксинов
+@import '../styles/settings/index';
+
+.link {
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s;
+
+    &:hover {
+        color: var(--color-accent);
+    }
+
+    &.active {
+        color: var(--color-accent);
+        text-decoration: underline;
+        border-bottom: 2px solid var(--color-accent);
+    }
+}

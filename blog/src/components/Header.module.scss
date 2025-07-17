@@ -2,13 +2,19 @@
 @import '../styles/settings/index';
 
 .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-base);
+    color: var(--color-white);
     margin: 0;
-    padding: 0 1em;
-    background: white;
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
+    @include container;
+    padding: 20px 0;
 }
 
 .title {
+    color: var(--color-text);
     margin: 0;
     font-size: 1em;
 }
@@ -18,15 +24,20 @@
     text-decoration: none;
 }
 
-.nav {
+.menu {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
+    text-transform: uppercase;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .navLink {
     padding: 1em 0.5em;
-    color: var(--black);
+    color: var(--color-white);
     border-bottom: 4px solid transparent;
     text-decoration: none;
 

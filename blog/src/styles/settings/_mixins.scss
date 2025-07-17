@@ -1,5 +1,9 @@
 /* general mixins and helpers */
 
+@function rem($px) {
+  @return calc($px / 16) * 1rem;
+}
+
 @mixin reset-list() {
   margin: 0;
   padding: 0;
@@ -161,12 +165,6 @@
 }
 
 @mixin container {
-  max-width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 0 var(--g-padding);
-
-  @include desktop-wide {
-    max-width: calc(#{$container-max-width} + 2 * var(--g-padding));
-  }
+  max-width: var(--max-width);
+  margin: 0 auto;
 }

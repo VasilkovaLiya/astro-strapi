@@ -45,8 +45,7 @@ src/
 @import './settings/index';
 
 :root {
-  --accent: 136, 58, 234;
-  --accent-light: 224, 204, 250;
+  //base css vars
 }
 
 
@@ -64,7 +63,7 @@ src/
 @import '../../styles/settings/index';
 
 .component {
-  color: var(--accent);
+  color: var(--color-accent);
  
 }
 ```
@@ -123,9 +122,7 @@ import styles from './Component.module.scss';
 
 ```scss
 // Цвета
---accent: 136, 58, 234;
---accent-light: 224, 204, 250;
---accent-dark: 49, 10, 101;
+--color-base: #c9a998;
 
 // Брейкпоинты
 $mobile: 480px;

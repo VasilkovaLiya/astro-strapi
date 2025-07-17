@@ -3,6 +3,8 @@
 
 .button {
     display: inline-flex;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     align-items: center;
     justify-content: center;
     border: none;
@@ -41,8 +43,8 @@
 
 // Варианты
 .primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-    color: white;
+    background: var(--color-button);
+    color: var(--color-text);
 
     &:hover:not(:disabled) {
         //transform: translateY(-1px);
