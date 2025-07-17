@@ -1,0 +1,74 @@
+---
+
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Button from '../components/react/Button';
+import BlogPost from '../components/react/BlogPost';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>      
+        <h2>Демонстрация работы с CSS модулями и React компонентами</h2>
+        
+        <section>
+          <h3>React Button компонент</h3>
+          <div style="display: flex; gap: 1rem; margin: 1rem 0;">
+            <Button variant="primary" size="medium">Primary Button</Button>
+            <Button variant="secondary" size="medium">Secondary Button</Button>
+            <Button variant="outline" size="medium">Outline Button</Button>
+          </div>
+          
+          <div style="display: flex; gap: 1rem; margin: 1rem 0;">
+            <Button variant="primary" size="small">Small</Button>
+            <Button variant="primary" size="medium">Medium</Button>
+            <Button variant="primary" size="large">Large</Button>
+          </div>
+          
+          <div style="margin: 1rem 0;">
+            <Button variant="primary" disabled>Disabled Button</Button>
+          </div>
+        </section>
+        
+        <section>
+          <h3>React BlogPost компонент</h3>
+          <BlogPost
+            title="Пример статьи"
+            description="Это пример использования React компонента с CSS модулями"
+            publishedAt="2024-01-15"
+            richTextContent="<p>Это <strong>богатый</strong> HTML контент, который рендерится через React компонент.</p>"
+            cover={{
+              id: 1,
+              documentId: "demo-1",
+              name: "demo-image",
+              alternativeText: "Placeholder image",
+              width: 800,
+              height: 600,
+              hash: "demo-hash",
+              ext: ".jpg",
+              mime: "image/jpeg",
+              size: 102400,
+              url: "/blog-placeholder-1.jpg",
+              provider: "local",
+              createdAt: "2024-01-15T00:00:00.000Z",
+              updatedAt: "2024-01-15T00:00:00.000Z",
+              publishedAt: "2024-01-15T00:00:00.000Z"
+            }}
+          />
+        </section>
+        
+        <section>
+          <h3>Astro компоненты с CSS модулями</h3>
+          <p>Header компонент выше использует CSS модули вместо inline стилей.</p>
+        </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+

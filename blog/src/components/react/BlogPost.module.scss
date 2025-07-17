@@ -1,0 +1,55 @@
+// Импорт глобальных переменных и миксинов
+@import '../../styles/settings/index';
+
+.blogPost {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--accent-dark);
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.content {
+    line-height: 1.8;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--accent-dark);
+    }
+
+    p {
+        margin-bottom: 1rem;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 1rem 0;
+    }
+}
