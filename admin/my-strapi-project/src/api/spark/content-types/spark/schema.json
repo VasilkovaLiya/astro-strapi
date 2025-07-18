@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sparks",
+  "info": {
+    "singularName": "spark",
+    "pluralName": "sparks",
+    "displayName": "Spark"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "text"
+    },
+    "author": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "quote",
+        "meme",
+        "tip",
+        "poem",
+        "map"
+      ]
+    },
+    "mood": {
+      "type": "enumeration",
+      "enum": [
+        "motivation",
+        "sad",
+        "funny",
+        "work"
+      ]
+    },
+    "keywords": {
+      "type": "json"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category",
+      "mappedBy": "spark"
+    }
+  }
+}

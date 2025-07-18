@@ -26,6 +26,12 @@
     },
     "description": {
       "type": "text"
+    },
+    "spark": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::spark.spark",
+      "inversedBy": "categories"
     }
   }
 }
