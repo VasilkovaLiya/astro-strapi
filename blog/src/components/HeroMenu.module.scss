@@ -1,0 +1,68 @@
+@import '../styles/settings';
+
+.heroMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include container;
+    @include space('margin-bottom', 'lg');
+
+    @include laptop-up {
+        @include space('margin-bottom', '2xl');
+
+    }
+
+    @include desktop-up {
+        @include space('margin-bottom', '3xl');
+    }
+}
+
+.title {
+    text-transform: uppercase;
+    @include font-size('2xl', 1);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+
+
+    @include space('margin-top', 'lg');
+
+    @include desktop-up {
+        @include space('margin-top', '2xl');
+        @include font-size('3xl');
+
+    }
+}
+
+
+.subtitle {
+    font-size: rem(16);
+    color: var(--color-text);
+    @include space('margin-bottom', 'lg');
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: rem(16);
+
+    @include tablet-up {
+        display: grid;
+        grid-gap: rem(16);
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include desktop-up {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    li {
+        border: 1px solid white;
+        @include space('padding', 'md');
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}

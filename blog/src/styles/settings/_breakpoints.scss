@@ -1,79 +1,63 @@
-$mobile-tiny-max-width: 360px;
-$mobile-small-max-width: 480px;
-$tablet-min-width: 744px;
-$desktop-min-width: 1000px;
-$desktop-middle-width: 1224px;
-$desktop-wide-width: 1416px;
-$desktop-ultra-wide-width: 1500px;
+$breakpoints: (
+  'mobile': 576px,
+  'tablet': 768px,
+  'laptop': 992px,
+  'desktop': 1200px,
+  'wide': 1440px
+);
+
+@mixin tablet-up {
+  @media (min-width: map-get($breakpoints, 'tablet')) {
+    @content;
+  }
+}
+
+@mixin laptop-up {
+  @media (min-width: map-get($breakpoints, 'laptop')) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (min-width: map-get($breakpoints, 'desktop')) {
+    @content;
+  }
+}
+
+@mixin wide-up {
+  @media (min-width: map-get($breakpoints, 'wide')) {
+    @content;
+  }
+}
 
 @mixin mobile-only {
-  @media screen and (max-width: #{$tablet-min-width - 1px}) {
-    @content;
-  }
-}
-
-@mixin mobile-tiny-only {
-  @media screen and (max-width: #{$mobile-tiny-max-width - 1px}) {
-    @content;
-  }
-}
-
-@mixin mobile-tiny {
-  @media screen and (min-width: $mobile-tiny-max-width) {
-    @content;
-  }
-}
-
-@mixin mobile-small-only {
-  @media screen and (max-width: #{$mobile-small-max-width - 1px}) {
-    @content;
-  }
-}
-
-@mixin mobile-small {
-  @media screen and (min-width: $mobile-small-max-width) {
+  @media (max-width: map-get($breakpoints, 'mobile') - 1px) {
     @content;
   }
 }
 
 @mixin tablet-only {
-  @media screen and (min-width: $tablet-min-width) and (max-width: #{$desktop-min-width - 1px}) {
+  @media (min-width: map-get($breakpoints, 'tablet')) and (max-width: map-get($breakpoints, 'laptop') - 1px) {
     @content;
   }
 }
 
-@mixin mobile-and-tablet {
-  @media screen and (max-width: #{$desktop-min-width - 1px}) {
-    @content;
+@mixin screen($min: null, $max: null) {
+  @if $min !=null and $max !=null {
+    @media (min-width: $min) and (max-width: $max - 1px) {
+      @content;
+    }
   }
-}
 
-@mixin tablet {
-  @media screen and (min-width: $tablet-min-width) {
-    @content;
+  @else if $min !=null {
+    @media (min-width: $min) {
+      @content;
+    }
   }
-}
 
-@mixin desktop {
-  @media screen and (min-width: $desktop-min-width) {
-    @content;
-  }
-}
-
-@mixin desktop-middle {
-  @media screen and (min-width: $desktop-middle-width) {
-    @content;
-  }
-}
-
-@mixin desktop-wide {
-  @media screen and (min-width: $desktop-wide-width) {
-    @content;
-  }
-}
-
-@mixin desktop-ultra-wide {
-  @media screen and (min-width: $desktop-ultra-wide-width) {
-    @content;
+  @else if $max !=null {
+    @media (max-width: $max - 1px) {
+      @content;
+    }
   }
 }

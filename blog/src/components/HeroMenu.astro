@@ -1,0 +1,50 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
+import styles from './HeroMenu.module.scss';
+import '../styles/global.scss';
+import Image from '@components/ui/Image';
+import menu1 from '../assets/menu1.png';
+import menu2 from '../assets/menu2.png';
+import menu3 from '../assets/menu3.png';
+---
+
+<div class={styles.heroMenu}>
+      <h2 class={styles.title}>МЕНЮ</h2>
+      <div class={styles.subtitle}>Some subtitle</div>
+      <ul class={styles.list}>
+        <HeaderLink href="/inspire">
+         <div>
+            <Image 
+            src={menu1.src}
+            alt="Placeholder image"
+            width={400}
+            height={300}
+          />
+          <div>Вдохновение</div>
+         </div>
+        </HeaderLink>
+        <HeaderLink href="/blog">
+          <div>
+            <Image 
+            src={menu2.src}
+            alt="Placeholder image"
+            width={400}
+            height={300}
+          />
+          <div>Блог</div>
+         </div>
+        </HeaderLink>
+        <HeaderLink href="/about">
+        <div>
+            <Image 
+            src={menu3.src}
+            alt="Placeholder image"
+            width={400}
+            height={300}
+          />
+          <div>Лаборатория</div>
+         </div>
+        </HeaderLink>
+      </ul>
+</div>

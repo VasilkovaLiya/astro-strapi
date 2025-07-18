@@ -1,18 +1,5 @@
 @import './settings';
 
-main {
-    width: $container-max-width;
-}
-
-ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    gap: 1rem;
-}
 
 ul li {
     width: calc(50% - 1rem);

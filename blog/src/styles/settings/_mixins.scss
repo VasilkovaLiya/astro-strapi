@@ -1,7 +1,43 @@
 /* general mixins and helpers */
 
-@function rem($px) {
-  @return calc($px / 16) * 1rem;
+
+
+@mixin font-size($size, $line-height: null) {
+  font-size: fs($size);
+
+  @if $line-height {
+    @if type-of($line-height)=='number' {
+      line-height: $line-height;
+    }
+
+    @else {
+      @error "Line-height must be a number, received '#{$line-height}'";
+    }
+  }
+}
+
+// Spacing shortcut for any property
+@mixin space($property, $size) {
+  #{$property}: sp($size);
+}
+
+// Multi-directional spacing
+@mixin spacing($top: null, $right: null, $bottom: null, $left: null) {
+  @if $top {
+    padding-top: sp($top);
+  }
+
+  @if $right {
+    padding-right: sp($right);
+  }
+
+  @if $bottom {
+    padding-bottom: sp($bottom);
+  }
+
+  @if $left {
+    padding-left: sp($left);
+  }
 }
 
 @mixin reset-list() {

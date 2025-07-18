@@ -44,5 +44,43 @@ $header-desktop-height: 64px;
 $header-desktop-middle-height: 72px;
 $footer-mobile-menu: 64px;
 $bg-gradient-layer: linear-gradient(to bottom,
-                rgb(41 80 159 / 0%) 0%,
-                rgb(51 51 67 / 52%) 100%);
+        rgb(41 80 159 / 0%) 0%,
+        rgb(51 51 67 / 52%) 100%);
+
+// Typography scale (base 16px = 1rem)
+$font-sizes: (
+    'xs': rem(12),
+    // 12px - micro text (captions, legal text)
+    'sm': rem(14),
+    // 14px - small body text (forms, secondary text)
+    'md': rem(16),
+    // 16px - default body text (paragraphs)
+    'lg': rem(24),
+    // 24px - subheadings (h3/h4)
+    'xl': rem(32),
+    // 32px - headings (h2)
+    '2xl': rem(48),
+    // 48px - main headings (h1)
+    '3xl': rem(64),
+    // 64px - hero headings
+    '4xl': rem(80) // 80px - jumbo display text
+);
+
+// Spacing system (8px base rhythm)
+$spacing: (
+    'xs': rem(4),
+    // 4px - tight spacing
+    'sm': rem(8),
+    // 8px - base unit
+    'md': rem(16),
+    // 16px - standard padding
+    'lg': rem(24),
+    // 24px - section spacing
+    'xl': rem(32),
+    // 32px - large blocks
+    '2xl': rem(48),
+    // 48px - extra large
+    '3xl': rem(64),
+    // 64px - mega spacing
+    '4xl': rem(80) // 80px - hero sections
+);

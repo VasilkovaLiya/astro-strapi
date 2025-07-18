@@ -1,54 +1,59 @@
 import React from 'react';
 
+export type StaticImageProps = {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+    className?: string;
+    loading?: 'eager' | 'lazy';
+};
 
-type CoverFormat = {
-    ext: string;
-    url: string;
-    hash: string;
-    mime: string;
-    name: string;
-    path: string | null;
-    size: number;
-    width: number;
-    height: number;
-    sizeInBytes: number;
-}
-
-export type Cover = {
-    id: number;
-    documentId: string;
-    name: string;
-    alternativeText?: string | null;
-    caption?: string | null;
-    width: number;
-    height: number;
-    formats?: {
-        small?: CoverFormat;
-        thumbnail?: CoverFormat;
-        [key: string]: CoverFormat | undefined;
+export type DynamicImageProps = {
+    cover: {
+        url: string;
+        alternativeText?: string;
+        width?: number;
+        height?: number;
+        formats?: {
+            thumbnail?: { url: string };
+            small?: { url: string };
+            [key: string]: { url: string } | undefined;
+        };
     };
-    hash: string;
-    ext: string;
-    mime: string;
-    size: number;
-    url: string;
-    previewUrl?: string | null;
-    provider: string;
-    provider_metadata?: any;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-}
-
-type ImageProps = {
-    cover: Cover;
     alt?: string;
     className?: string;
-}
+    loading?: 'eager' | 'lazy';
+};
 
-const Image: React.FC<ImageProps> = ({ cover, alt = '', className = '' }) => {
-    console.log('cover', cover);
-    if (!cover) return null;
+export type ImageProps = StaticImageProps | DynamicImageProps | ImageMetadata;
+
+export const isDynamicImage = (props: ImageProps): props is DynamicImageProps => {
+    return 'cover' in props;
+};
+
+const Image: React.FC<ImageProps> = (props) => {
+    // Обработка статического изображения
+    if (!isDynamicImage(props)) {
+        const { src, alt, width, height, className = '', loading = 'lazy' } = props;
+
+        return (
+            <img
+                src={src}
+                alt={alt}
+                width={width}
+                height={height}
+                loading={loading}
+                className={className}
+                style={{ maxWidth: '100%', height: 'auto' }}
+            />
+        );
+    }
+
+    // Обработка динамического изображения (из CMS)
+    const { cover, alt = '', className = '', loading = 'lazy' } = props;
+
+    if (!cover?.url) return null;
 
     const srcSet = [
         cover.formats?.thumbnail?.url && `${cover.formats.thumbnail.url} 156w`,
@@ -58,17 +63,15 @@ const Image: React.FC<ImageProps> = ({ cover, alt = '', className = '' }) => {
         .filter(Boolean)
         .join(', ');
 
-    const src = cover.url;
-
     return (
         <img
-            src={src}
+            src={cover.url}
             srcSet={srcSet}
             sizes="(max-width: 500px) 100vw, 700px"
             alt={alt || cover.alternativeText || ''}
             width={cover.width}
             height={cover.height}
-            loading="lazy"
+            loading={loading}
             className={className}
             style={{ maxWidth: '100%', height: 'auto' }}
         />

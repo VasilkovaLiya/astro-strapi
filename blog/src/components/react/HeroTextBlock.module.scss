@@ -1,0 +1,36 @@
+@import '../../styles/settings';
+
+.heroTextBlock {
+    @include space('margin-bottom', 'lg');
+    @include space('margin-top', 'lg');
+
+    @include laptop-up {
+        @include space('margin-bottom', '2xl');
+        @include space('margin-top', '2xl');
+    }
+
+    @include desktop-up {
+        @include space('margin-bottom', '3xl');
+        @include space('margin-top', '3xl');
+    }
+}
+
+.container {
+    max-width: clamp(300px, 60vw, 1200px);
+    margin: 0 auto;
+    text-align: center;
+    color: var(--color-text);
+}
+
+.title {
+    color: var(--color-text);
+}
+
+.highlight {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.description {
+    color: var(--color-text);
+}

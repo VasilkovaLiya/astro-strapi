@@ -1,0 +1,12 @@
+@import '../../styles/settings';
+
+.devider {
+    width: 1px;
+    height: rem(60);
+    background-color: var(--color-text);
+    margin: 0 auto;
+
+    @include laptop-up {
+        height: rem(100);
+    }
+}

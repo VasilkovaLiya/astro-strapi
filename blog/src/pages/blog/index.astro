@@ -2,6 +2,7 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 //import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
@@ -14,37 +15,26 @@ const { data } = await response.json();
 console.log('strapi posts:', data);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-                  {
-					  data.map((post) => {
-						  const date = post.publishedAt ? new Date(post.publishedAt) : null;
-						  return (
-							  <li>
-								  <a href={`/blog/${post.slug}/`}>
-									 <!-- {post.mainImage && <img src={post.mainImage.asset.url} width="100px" height="100px" alt="" />}
-									  -->
-									  <h4 class="title">{post.title}</h4>
-									  <p class="date">
-										  {date ? <FormattedDate date={date} /> : 'Дата не указана'}
-									  </p>
-								  </a>
-							  </li>
-						  )
-					  })
-                  }
-                </ul>
-
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout>
+	<section>
+		<ul>
+		  {
+			  data.map((post) => {
+				  const date = post.publishedAt ? new Date(post.publishedAt) : null;
+				  return (
+					  <li>
+						  <a href={`/blog/${post.slug}/`}>
+							 <!-- {post.mainImage && <img src={post.mainImage.asset.url} width="100px" height="100px" alt="" />}
+							  -->
+							  <h4 class="title">{post.title}</h4>
+							  <p class="date">
+								  {date ? <FormattedDate date={date} /> : 'Дата не указана'}
+							  </p>
+						  </a>
+					  </li>
+				  )
+			  })
+		  }
+		</ul>
+	</section>
+</BaseLayout>

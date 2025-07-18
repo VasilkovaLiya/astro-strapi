@@ -98,7 +98,19 @@ h6 {
 }
 
 h1 {
-  font-size: rem(32);
+  @include font-size('lg', 1.2);
+
+  @include tablet-up {
+    @include font-size('xl');
+  }
+
+  @include desktop-up {
+    @include font-size('2xl');
+  }
+
+  @include wide-up {
+    @include font-size('3xl');
+  }
 }
 
 h2 {
@@ -151,6 +163,12 @@ img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 code {

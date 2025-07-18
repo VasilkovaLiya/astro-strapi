@@ -1,0 +1,23 @@
+@import './settings';
+
+.heroBannerContent {
+    margin: 0 auto;
+    max-width: 80%;
+    text-wrap: balance;
+    text-align: center;
+}
+
+.heroBannerTitle {
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 2rem;
+    color: var(--color-accent);
+
+    @include tablet-up {
+        font-size: 4rem;
+    }
+
+    @include desktop-up {
+        font-size: 6rem;
+    }
+}

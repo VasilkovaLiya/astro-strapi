@@ -1,0 +1,23 @@
+@use "sass:map";
+
+@function rem($px) {
+    @return calc($px / 16) * 1rem;
+}
+
+// Font size shortcut
+@function fs($size) {
+    @if not map.has-key($font-sizes, $size) {
+        @error "Font size '#{$size}' not found. Available sizes: #{map.keys($font-sizes)}";
+    }
+
+    @return map.get($font-sizes, $size);
+}
+
+// Shortcut для spacing
+@function sp($space) {
+    @if not map.has-key($spacing, $space) {
+        @error "Spacing '#{$space}' not found. Available sizes: #{map.keys($spacing)}";
+    }
+
+    @return map.get($spacing, $space);
+}
